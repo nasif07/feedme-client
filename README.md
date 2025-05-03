@@ -1,38 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FeedMe - Personalized Meal Planning & Delivery 🍱
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+FeedMe is a **Meal Planning & Delivery Web Application** that allows users to personalize their meal plans and schedule deliveries based on their dietary preferences. Customers can browse available meal options, select meals based on their preferences, and schedule delivery. Meal providers can manage menus, respond to customer orders, and track deliveries.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Live URL
+
+[Live Demo](https://feedme-meal.vercel.app/)
+
+## Features
+
+### 1. **User Authentication**
+
+- Secure login system for customers and meal providers using email or phone number and password.
+- **JWT (JSON Web Tokens)** for authentication.
+- Passwords are securely hashed with **bcrypt**.
+
+### 2. **Customer Dashboard**
+
+- Browse meal options based on dietary preferences (vegan, keto, gluten-free, etc.).
+- Track meal orders and past deliveries.
+- Manage dietary preferences, cuisines, and portion sizes.
+
+### 3. **Meal Provider Dashboard**
+
+- Meal providers can create, update, and manage their menus.
+- Respond to customer orders by accepting, modifying, or declining requests.
+
+### 4. **Meal Selection & Customization**
+
+- Customers can personalize meals based on dietary needs.
+- Meal providers can specify ingredients, portion sizes, and pricing.
+
+### 5. **Search and Match**
+
+- Customers can search for meals based on cuisine, dietary preferences, ratings, and availability.
+- Meal providers can view customer preferences and prepare meals accordingly.
+
+### 6. **Role-Based Access Control**
+
+- Custom dashboards and routes for customers and meal providers.
+- Admin access for managing users and content.
+
+### 7. **Email Notifications**
+
+- Notifications for customers when meals are prepared and out for delivery.
+- Notifications for meal providers when new orders are placed.
+
+## Technology Stack
+
+### Frontend
+
+- **Next.js** (for SSR/SSG)
+- **TypeScript** for type safety
+- **React** for building user interfaces
+- **Tailwind CSS** for styling
+
+### Backend
+
+- **Node.js** with **Express** for the RESTful API
+- **MongoDB** for storing data (users, meal menus, orders)
+- **JWT** for authentication
+- **bcrypt** for password hashing
+- **Nodemailer** for email notifications
+
+### Additional Libraries & Tools
+
+- **Redux** for state management
+- **NextAuth** for authentication
+- **Axios** for making HTTP requests
+- **Cloudinary** for image uploads
+
+## Routes
+
+### Customer Routes:
+
+- **Home Page:** Overview of the platform.
+- **Login Page:** Login using email or phone number.
+- **Dashboard:** Browse meals, manage orders and preferences.
+- **Profile:** Edit personal details.
+- **Find Meals:** Search for meals based on preferences.
+- **Order Meal:** Place meal orders with customization options.
+
+### Meal Provider Routes:
+
+- **Home Page:** Overview of platform benefits for meal providers.
+- **Login Page:** Login using email or phone number.
+- **Dashboard:** Manage menus and orders.
+- **Profile:** Edit meal provider profile, including available meals.
+- **Post Meal Menu:** Post detailed meal menus for customers to browse.
+- **Order Responses:** Respond to customer orders.
+
+## Setup & Installation
+
+### Prerequisites
+
+- **Node.js** (version 16 or higher)
+- **MongoDB** (local setup or Atlas)
+
+### Installation Steps
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/ifajul89/feedme.git
+   ```
+
+2. **Install dependencies for frontend and backend:**
+
+   In the root folder of the project:
+
+   ```bash
+   cd feedme
+   npm install
+   ```
+
+3. **Set up the environment variables:**
+
+   Create a `.env.local` file in the root directory and add your environment variables. Example:
+
+   ```bash
+   NEXT_PUBLIC_API_URL=backend-url
+   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=name
+   NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=preset
+   ```
+
+4. **Start the development server:**
+
+   To run the frontend and backend in development mode:
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the server on `http://localhost:3000`.
+
+## Project Structure
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# feedme
+/feedme
+  /frontend   # Next.js frontend code
+  /backend    # Node.js and Express backend API
+  /models     # MongoDB Mongoose models for users, meals, orders
+  /controllers # Logic for handling API requests
+  /routes     # API routes for frontend interaction
+  /public     # Static files (e.g., images)
+  /utils      # Utility functions (e.g., for authentication, email sending)
+  /config     # Configuration files (e.g., for MongoDB, JWT)
+```
