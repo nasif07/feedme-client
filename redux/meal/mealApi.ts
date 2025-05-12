@@ -39,6 +39,29 @@ const mealApi = baseApi.injectEndpoints({
       providesTags: ["Meal"],
     }),
 
+    getMealsByCategory: builder.query<MealResponse, string>({
+      query: (category) => ({
+        url: `/providers/menu?category=${encodeURIComponent(category)}`,
+        method: "GET",
+      }),
+      transformResponse: (response: MealResponse) => {
+        if (!response || !response.data) {
+          return {
+            status: false,
+            statusCode: 404,
+            message: "No meals found for this category",
+            data: [],
+          };
+        }
+        return response;
+      },
+      transformErrorResponse: (error: any) => {
+        console.error("Error fetching meals by category:", error);
+        return error;
+      },
+      providesTags: ["Meal"],
+    }),
+
     getMealByEmail: builder.query({
       query: (email: string) => ({
         url: `/providers/menu/provider-menus?email=${email}`,
@@ -120,6 +143,7 @@ const mealApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllMealsQuery,
+  useGetMealsByCategoryQuery,
   useGetMealByEmailQuery,
   useCreateMealMutation,
   useUpdateMealMutation,
