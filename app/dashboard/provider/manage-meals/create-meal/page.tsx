@@ -255,7 +255,9 @@ export default function CreateMealForm() {
                 </div>
               ) : (
                 <CldUploadWidget
-                  uploadPreset="feedme"
+                  uploadPreset={
+                    process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+                  }
                   onSuccess={(result: any) => {
                     if (result?.info?.secure_url) {
                       setImageUrl(result.info.secure_url);
@@ -268,7 +270,7 @@ export default function CreateMealForm() {
                     cropping: true,
                     croppingAspectRatio: 16 / 9,
                     showPoweredBy: false,
-                    cloudName: "dciqyeuyp",
+                    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
                     styles: {
                       palette: {
                         window: "#FFFFFF",

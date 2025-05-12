@@ -75,7 +75,7 @@ export default function About() {
         <div className="relative flex flex-col justify-between rounded-xl bg-gray-100/60 p-5 lg:p-13">
           {/* Large orange circle top-right */}
           <div className="bg-feed-lime absolute top-[-30px] right-[-30px] z-0 hidden h-24 w-24 rounded-full opacity-100 blur-lg lg:block" />
-          x{/* Small dot above "Opening Hours" */}
+          {/* Small dot above "Opening Hours" */}
           <div className="bg-feed-jungle absolute top-[55%] left-[5%] z-10 h-3 w-3 rounded-full blur-xs"></div>
           {/* Small bottom right dot */}
           <div className="bg-feed-jungle absolute right-3 bottom-3 z-10 h-2 w-2 rounded-full blur-xs"></div>

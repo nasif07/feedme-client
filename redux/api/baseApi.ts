@@ -4,6 +4,7 @@ import { RootState } from "../store";
 // Define a fallback API URL in case environment variable is not set
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+
 export const baseApi = createApi({
   reducerPath: "baseApi",
   tagTypes: ["User", "Meal"],
@@ -34,6 +35,7 @@ export const baseApi = createApi({
               errorData = { message: await response.clone().text() };
             } catch (textError) {
               errorData = { message: `HTTP error ${response.status}` };
+              console.log(response);
             }
           }
 

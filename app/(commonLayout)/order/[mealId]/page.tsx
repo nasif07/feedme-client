@@ -108,6 +108,7 @@ export default function OrderPage() {
     isError,
   } = useGetMealByIdQuery({ id: mealId });
   const meal = mealData?.data;
+  console.log("Meal Data:", meal);
 
   const [quantity, setQuantity] = useState(1);
   const [noteToChef, setNoteToChef] = useState("");
@@ -737,11 +738,12 @@ export default function OrderPage() {
                           _id:
                             typeof meal.providerId === "string"
                               ? meal.providerId
-                              : (meal.providerId as any)._id,
+                              : meal.providerId?.["_id"] ||
+                                "Unknown Provider ID",
                           name:
                             typeof meal.providerId === "string"
                               ? meal.providerName || "Provider"
-                              : (meal.providerId as any).name,
+                              : meal.providerId?.["name"] || "Unknown Provider",
                         },
                       }}
                       quantity={quantity}

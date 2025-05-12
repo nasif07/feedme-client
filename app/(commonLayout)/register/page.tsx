@@ -64,9 +64,11 @@ export default function SignUp() {
 
     try {
       const response = await SignUp(userInfo);
+      console.log(userInfo);
 
       if ("error" in response) {
         const errorResponse = response.error;
+        console.log(errorResponse);
         if (errorResponse && "data" in errorResponse && errorResponse.data) {
           const errorData = errorResponse.data as BackendErrorResponse;
 
