@@ -1,4 +1,5 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +32,11 @@ export default function SignIn() {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignInFormData>();
 
@@ -51,7 +54,6 @@ export default function SignIn() {
         if (errorResponse && "data" in errorResponse && errorResponse.data) {
           const errorData = errorResponse.data as BackendErrorResponse;
 
-          // Check for error message in errorSources array
           if (
             errorData.errorSources &&
             Array.isArray(errorData.errorSources) &&
@@ -59,9 +61,7 @@ export default function SignIn() {
             errorData.errorSources[0].message
           ) {
             toast.error(errorData.errorSources[0].message);
-          }
-          // Fallback to general message if available
-          else if (errorData.message) {
+          } else if (errorData.message) {
             toast.error(errorData.message);
           }
         }
@@ -91,7 +91,6 @@ export default function SignIn() {
       }
     } catch (error) {
       console.error("Login error:", error);
-      // No toast for unexpected errors unless there's a message from the backend
       if (error && typeof error === "object" && "message" in error) {
         const errorMessage = (error as { message: string }).message;
         toast.error(errorMessage);
@@ -104,6 +103,7 @@ export default function SignIn() {
     <div className="flex min-h-[90vh] items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-[900px] overflow-hidden rounded-2xl bg-white shadow-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left Side - Welcome */}
           <div className="bg-feed-lime relative hidden md:block">
             <div className="absolute inset-0 bg-black/10" />
             <div className="relative flex h-full flex-col justify-center p-12">
@@ -119,6 +119,7 @@ export default function SignIn() {
             </div>
           </div>
 
+          {/* Right Side - Form */}
           <div className="flex flex-col justify-center px-8 py-10 sm:px-12 md:py-15">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
               <h2 className="text-center text-3xl font-semibold tracking-tight text-gray-900">
@@ -196,13 +197,37 @@ export default function SignIn() {
                 <div>
                   <Button
                     type="submit"
-                    className="text bg-feed-jungle hover:bg-feed-black focus:ring-feed-lime h-10 w-full rounded-full px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                    className="bg-feed-jungle hover:bg-feed-black focus:ring-feed-lime h-10 w-full rounded-full px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
                     disabled={isLoading}
                   >
                     {isLoading ? "Signing in..." : "Sign in"}
                   </Button>
                 </div>
               </form>
+
+              {/* Demo Credentials Buttons */}
+              <div className="flex justify-center gap-4 mt-6">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setValue("email", "user@gmail.com");
+                    setValue("password", "useruser");
+                  }}
+                >
+                  Demo User
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setValue("email", "admin@gmail.com");
+                    setValue("password", "adminadmin");
+                  }}
+                >
+                  Demo Admin
+                </Button>
+              </div>
             </div>
           </div>
         </div>

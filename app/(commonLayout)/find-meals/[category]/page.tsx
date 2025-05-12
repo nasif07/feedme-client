@@ -48,6 +48,7 @@ interface Meal {
 
 export default function FindMealsPage() {
   const params = useParams();
+  console.log(params);
   const category = params.category as string;
   //   const { data: mealData, isLoading, isError } = useGetAllMealsQuery({});
   const {

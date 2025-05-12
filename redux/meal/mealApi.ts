@@ -41,7 +41,7 @@ const mealApi = baseApi.injectEndpoints({
 
     getMealsByCategory: builder.query<MealResponse, string>({
       query: (category) => ({
-        url: `/providers/menu?category=${encodeURIComponent(category)}`,
+        url: `/providers/menu/category/${category}`,
         method: "GET",
       }),
       transformResponse: (response: MealResponse) => {

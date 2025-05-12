@@ -275,7 +275,8 @@ export default function OrderPage() {
             <CardTitle className="flex items-center justify-between">
               <span className="text-xl">{typedMeal.name}</span>
               <span className="text-feed-jungle/70 text-lg font-semibold">
-                ৳{typedMeal.price.toFixed(2)}
+                ৳
+                {typedMeal.price ? typedMeal.price.toFixed(2) : " (price not set yet)"}
               </span>
             </CardTitle>
 
@@ -306,13 +307,13 @@ export default function OrderPage() {
 
             <div className="space-y-4">
               <div className="flex flex-wrap gap-2">
-                {typedMeal.ingredients.map(
+                {/* {typedMeal.ingredients.map(
                   (ingredient: string, index: number) => (
                     <Badge key={index} variant="outline" className="bg-gray-50">
                       {ingredient}
                     </Badge>
                   ),
-                )}
+                )} */}
               </div>
 
               <div className="flex items-center gap-4 text-sm text-gray-500">
